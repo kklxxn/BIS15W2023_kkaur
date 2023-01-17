@@ -1,0 +1,46 @@
+---
+title: "Lab 3 warmup"
+output: html_document
+date: "2023-01-17"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+### height & weight vectors
+```{r}
+plant_height <- c(30.7, 37.6, 28.4, NA, 33.2)
+plant_mass <- c(4, 5.2, 3.7, NA, 4.6)
+```
+### titles
+```{r}
+rowtitles <- c("plant 1", "plant 2","plant 3","plant 4","plant 5")
+coltitles <- c("height","mass")
+```
+### combine
+```{r}
+plant_data <- c(plant_height,plant_mass)
+```
+### matrix construction
+```{r}
+plant_matrix <- matrix(plant_data, nrow=5, byrow = F) #by colum org because data pushed in by col
+plant_matrix
+```
+### adding names
+```{r}
+colnames(plant_matrix) <- coltitles
+rownames(plant_matrix) <- rowtitles
+plant_matrix
+```
+### mean calculations by column
+```{r}
+plant_means <- colMeans(plant_matrix, na.rm = T)
+plant_means
+```
+### adding to matrix
+```{r}
+plant_matrix_final <- rbind(plant_matrix, plant_means)
+plant_matrix_final
+```
+
+
