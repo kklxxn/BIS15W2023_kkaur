@@ -1,0 +1,42 @@
+---
+title: "lab 4 warmup"
+output: html_document
+date: "2023-01-19"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+1. In a new R Markdown document, load the tidyverse and a package called `palmerpenguins`.
+```{r}
+library("tidyverse")
+library("palmerpenguins")
+```
+
+2. What are the dimensions of the dataset `penguins`?
+```{r}
+dim(penguins)
+glimpse(penguins)
+```
+
+3. What are the names of the variables in the `penguins` dataset?
+```{r}
+names(penguins)
+```
+
+4. How many individuals were sampled on each island in the `penguins` dataset?
+```{r}
+table(penguins$island)
+```
+
+5. What is the mean body mass for all individuals in the `penguins` dataset?
+```{r}
+body_mass <- penguins$body_mass_g
+mean(body_mass, na.rm = TRUE)
+```
+
+
+
+
+
+
