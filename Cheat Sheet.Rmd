@@ -1,0 +1,107 @@
+---
+title: "cheat-sheet"
+output: 
+  html_document: 
+    keep_md: yes
+date: "2023-01-24"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Lab 1
+
+*gets current working directory*
+```{r}
+getwd()
+```
+*arithmetic order of operations applies*
+*help on method*
+```{r}
+?mean
+```
+
+*vectors*
+```{r}
+example_1 <- c(1,2,3,4,5,6) # c is concatenate
+```
+- operations on vectors
+```{r}
+mean(example_1)
+```
+```{r}
+median(example_1)
+```
+```{r}
+sd(example_1)
+```
+
+
+## Lab 2: objects and data classes
+*operations to work with objects*
+```{r}
+#making the objects
+red <- 34
+yellow <- 45
+purple <- 29
+```
+```{r}
+sum(red,yellow)
+```
+
+*classes*
+```{r}
+my_numeric <- 42 
+my_integer <- 2L #adding an L automatically denotes an integer
+my_character <- "universe"
+my_logical <- FALSE
+my_complex <- 2+4i
+```
+
+```{r}
+#important functions
+class(my_character) #class of x
+is.integer(my_character) # checks is x is of specified type, Boolean return
+new_integer <- as.character(my_integer) # changes class of x to specified class
+class(new_integer)
+```
+*NA values*
+```{r}
+bleh <- NA
+is.na(bleh) # checks if bleh is NA type
+anyNA(bleh) #same as above but more useful for vectors, data matrices and data frame
+```
+```{r}
+blehbleh <- c(1,5,2,NA,4,6)
+mean(blehbleh, na.rm = T ) #na. tells function whether to include the NA value or not
+mean(blehbleh) # will give a null value without it
+```
+- Data Structures
+In addition to classes of data, R also organizes data in different ways. These are called data structures and include vectors, lists, matrices, data frames, and factors. For now, we will focus on `vectors`.  
+
+- Vectors
+Vectors are a common way of organizing data in R.  We create vectors using the `c` command. The `c` stands for concatenate. 
+
+```{r}
+#creating a sequence
+v <- c(1:50)
+v
+#evaluating
+v <= 25
+```
+```{r}
+# to get only elements
+v[v<= 25]
+```
+*accesing elements*
+```{r}
+days_of_the_week <- c("Monday", "Tuesday", "Wednesday", "Thrusday", "Friday", "Saturday", "Sunday")
+days_of_the_week[3]
+```
+
+- Data Matrices
+Data matrices are a series of stacked vectors, similar to a data table. In the example below, we build a new data matrix using the matrix command.
+
+
+
