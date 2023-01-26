@@ -74,7 +74,7 @@ tabyl(superhero_info, alignment)
 ```{r}
 superhero_info %>% 
   filter(alignment == "neutral") %>% 
-  select(name)
+  select(name, alignment)
 ```
 
 ## `superhero_info`
@@ -113,11 +113,13 @@ filter(superhero_good, race == "Asgardian")
 
 8. Among the bad guys, who are the male humans over 200 inches in height?
 ```{r}
-filter(superhero_bad, gender == "Male" & height > 200)
+superhero_bad %>% 
+  filter(gender == "Male" & race == "Human") %>% 
+  filter(height > 200)
 ```
 
 9. OK, so are there more good guys or bad guys that are bald (personal interest)?
-- Good
+- there are more good guys that are bald (37) than bad guys (35)
 ```{r}
 tabyl(superhero_bad, hair_color)
 ```
@@ -125,25 +127,31 @@ tabyl(superhero_bad, hair_color)
 tabyl(superhero_good, hair_color)
 ```
 
-10. Let's explore who the really "big" superheros are. In the `superhero_info` data, which have a height over 200 or weight greater than or equal to 450?
+10. Let's explore who the really "big" superheros are. In the `superhero_info` data, which have a height over 300 or weight greater than or equal to 450?
 ```{r}
-
+big_superheroes <- filter(superhero_info, height > 300 | weight >= 450)
+big_superheroes
 ```
 
 11. Just to be clear on the `|` operator,  have a look at the superheros over 300 in height...
 ```{r}
-
+filter(superhero_info, height > 300)
 ```
 
 12. ...and the superheros over 450 in weight. Bonus question! Why do we not have 16 rows in question #10?
+- we do not have 16 rows because using | only includes occurrences of a or b and removes any overlapping occurrences
 ```{r}
-
+filter(superhero_info, weight >= 450)
 ```
 
 ## Height to Weight Ratio
 13. It's easy to be strong when you are heavy and tall, but who is heavy and short? Which superheros have the highest height to weight ratio?
+- Groot has the highest at 175.25, and Galactus and Fin Fang Foom have the next highest in order.
 ```{r}
-
+superhero_info %>% 
+  mutate(height_weight_ratio=height/weight) %>% 
+  select(name, height_weight_ratio) %>% 
+  arrange(desc(height_weight_ratio))
 ```
 
 ## `superhero_powers`
@@ -153,14 +161,19 @@ glimpse(superhero_powers)
 ```
 
 14. How many superheros have a combination of accelerated healing, durability, and super strength?
+- 97 superheroes as indicated below
 ```{r}
-
+combined_powers <- filter(superhero_powers, accelerated_healing == TRUE & durability == TRUE & super_strength == TRUE)
+combined_powers
+```
+```{r}
+dim(combined_powers)
 ```
 
 ## Your Favorite
 15. Pick your favorite superhero and let's see their powers!
 ```{r}
-
+filter(superhero_powers, hero_names == "Captain America")
 ```
 
 ## Push your final code to GitHub!
