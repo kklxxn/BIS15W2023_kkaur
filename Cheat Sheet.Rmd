@@ -10,6 +10,11 @@ date: "2023-01-24"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Loading Packages
+```{r}
+library("tidyverse")
+```
+
 ## Lab 1
 
 *gets current working directory*
@@ -103,5 +108,66 @@ days_of_the_week[3]
 - Data Matrices
 Data matrices are a series of stacked vectors, similar to a data table. In the example below, we build a new data matrix using the matrix command.
 
+```{r}
+a <- c(1,2)
+b <- c(3,4)
+d <- c(5,6)
+```
+```{r}
+chars <- c(a,b,d)
+```
+```{r}
+letters <- matrix(chars, nrow = 3, byrow = T)
+letters
+```
+Can use vectors to rename
+```{r}
+values <- c("first", "second")
+quantities <- c("a","b","c")
+```
+```{r}
+colnames(letters) <- values
+rownames(letters) <- quantities
+letters
+```
+```{r}
+#row totals
+total <- rowSums(letters)
+#add column
+letters <- cbind(letters, total)
+letters
+# can also use rbind and colsums
+```
+- Selecting values
+```{r}
+letters[1,2] # row,column
+#Adding a colon `:` selects the specified elements in a column. 
+#[,3] or [2,]  to select in entire row or column
+```
+
+## Lab 3 : Data frames
+
+to make a data frame
+```{r}
+alpha <- data.frame(a,b,c)
+alpha
+```
+functions
+```{r}
+dim(alpha)
+```
+```{r}
+names(alpha)
+```
+```{r}
+str(alpha)
+```
+- add rows
+rbind works here
+- add columns
+```{r}
+alpha$a <- c(4,5) 
+alpha
+```
 
 
